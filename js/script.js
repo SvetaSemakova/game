@@ -84,11 +84,27 @@ function cleanPrompt(value) {
 }
 
 async function requestAiReply(prompt) {
-  const response = await fetch(proxyUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, character: state.body })
-  });
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 20000);
+
+  let response;
+  try {
+    response = await fetch(proxyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify({ prompt, character: state.body }),
+      mode: 'cors',
+      signal: controller.signal
+    });
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error('Сервер не ответил за 20 секунд');
+    }
+    throw new Error('Проверьте интернет-соединение или доступ к прокси');
+  } finally {
+    window.clearTimeout(timeout);
+  }
+
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
