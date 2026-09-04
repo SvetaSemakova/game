@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../img/back.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#character {
+  display: block;
+  width: min(145%, 850px);
+  max-width: 145%;
+  height: auto;
+  object-fit: contain;
+  margin-left: 35px;
+}
+
+.chat-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.chat-history {
+  width: min(100%, 820px);
+  max-height: 190px;
+  overflow-y: auto;
+  margin: 0 auto 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  color: #fff;
+  font: 14px Arial, sans-serif;
+  word-break: break-word;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: rgba(93, 141, 255, 0.9);
+}
+
+.message.ai {
+  align-self: flex-start;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.chat-form {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+#userInput {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 45px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+#userInput::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#sendButton,
+#bodyButton,
+#musicButton {
+  border: 0;
+  border-radius: 45px;
+  padding: 7px 8px;
+  background: #a28e67;
+  color: #fff;
+  cursor: pointer;
+}
+
+#sendButton:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+#bodyButton,
+#musicButton {
+  position: fixed;
+  top: 30px;
+  z-index: 11;
+  border: 2px solid rgba(6, 6, 6, 0.35);
+  background: rgba(195, 171, 107, 0.2);
+}
+
+#bodyButton {
+  right: 25px;
+}
+
+#musicButton {
+  left: 25px;
+}
+
+@media (max-width: 480px) {
+  #character {
+    width: min(125%, 800px);
+    max-width: 125%;
+    margin-left: 35px;
+  }
+
+  #sendButton {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

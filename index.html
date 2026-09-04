@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мини игра</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <button id="musicButton" type="button" aria-label="Включить музыку 1" aria-pressed="false"><img src="img/song.png" alt="Музыка" width="40px" /></button>
+  <button id="bodyButton" type="button" aria-label="Переключить образ персонажа"><img src="img/clo.png" alt="Одежда" width="40px" /></button>
+  <img id="character" src="img/normal1.png" alt="Персонаж" />
+  <audio id="backgroundMusic" loop preload="auto"></audio>
+
+  <section class="chat-panel" aria-label="Диалог с персонажем">
+    <div id="chatHistory" class="chat-history" aria-live="polite"></div>
+    <form id="chatForm" class="chat-form">
+      <label for="userInput" hidden>Введите сообщение</label>
+      <input id="userInput" type="text" maxlength="500" autocomplete="off" aria-label="Введите сообщение" placeholder="Напишите сообщение..." />
+      <button id="sendButton" type="submit" aria-label="Отправить сообщение">></button>
+    </form>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
